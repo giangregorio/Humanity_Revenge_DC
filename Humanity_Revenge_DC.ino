@@ -3,6 +3,7 @@
 //#define SCREEN_MIRRORING
 #define EEPROM_ENABLED
 //#define ARDUBOY_TONES
+#define VERSION "V 1.1"
 
 #include "Arduboy2.h"
 

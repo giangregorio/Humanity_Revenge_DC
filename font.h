@@ -35,7 +35,7 @@ PROGMEM const unsigned char fonts[] =
   0xB7, 0xFE, // W
   0xB5, 0x5A, // X
   0xB7, 0xA4, // Y
-  0xE5, 0x4E, // Z
+  0xE5, 0x4E, // Z 
 };
 
 bool drawchar(unsigned char ch, byte x, byte y)
@@ -57,6 +57,11 @@ bool drawchar(unsigned char ch, byte x, byte y)
   { 
     startchar = 20;
     offset = 'a';
+  }
+  else if (ch == '.')
+  {
+    arduboy.drawPixel(x + 1, y + 4, 1);
+    return true;
   }
   else if (ch == ' ')
   {
