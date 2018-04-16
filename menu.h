@@ -20,12 +20,20 @@ byte menuManagement()
   if (arduboy.justPressed(DOWN_BUTTON))
   {
     menuselection = min(menuselection++, MENU_HIGHSCORE);
+    #ifdef ARDUBOY_TONES
     sound.tone(200, 20);
+    #else
+    beep2.tone(beep2.freq(200), 2);
+    #endif
   }
   else if (arduboy.justPressed(UP_BUTTON))
   {
     menuselection = max(menuselection--, MENU_START);
+    #ifdef ARDUBOY_TONES
     sound.tone(200, 20);
+    #else
+    beep2.tone(beep2.freq(200), 2);
+    #endif
   }
 
   if (menuselection == MENU_SOUND)
@@ -63,7 +71,11 @@ byte menuManagement()
 
   if (arduboy.justPressed(A_BUTTON) || arduboy.justPressed(B_BUTTON))
   {
-    sound.tone(1000, 20);
+     #ifdef ARDUBOY_TONES
+     sound.tone(1000, 20);
+     #else
+     beep2.tone(beep2.freq(1000), 2);
+     #endif
     return menuselection;
   }
   else

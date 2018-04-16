@@ -2,13 +2,22 @@
 //#define DEBUG_SERIAL
 //#define SCREEN_MIRRORING
 #define EEPROM_ENABLED
+//#define ARDUBOY_TONES
 
 #include "Arduboy2.h"
+
+#ifdef ARDUBOY_TONES
 #include "ArduboyTones.h"
+#else
+BeepPin1 beep1;
+BeepPin2 beep2;
+#endif
 
 const float pi = 3.141593;
 Arduboy2Base arduboy;
+#ifdef ARDUBOY_TONES
 ArduboyTones sound(arduboy.audio.enabled);
+#endif
 
 // game states
 #define MENU_SCREEN           0
@@ -45,6 +54,10 @@ void setup() {
   // put your setup code here, to run once:
   arduboy.boot();
   // arduboy.setFrameRate(60);
+#ifndef ARDUBOY_TONES
+  beep1.begin();
+  beep2.begin();
+#endif
 #ifdef EEPROM_ENABLED
   setHrDcEEPROM();
 #endif
@@ -57,7 +70,11 @@ void loop() {
   // put your main code here, to run repeatedly:
   if (!arduboy.nextFrame())
     return;
-
+    
+#ifndef ARDUBOY_TONES
+  beep1.timer();
+  beep2.timer();
+#endif
   arduboy.pollButtons();
   arduboy.clear();
 
@@ -153,7 +170,7 @@ void loop() {
       drawstring(F("TO DESTROY EVERYTHING"), 0, 10);
       drawstring(F("   BUT"), 0, 26);
       drawstring(F("ONE SINGLE HERO"), 0, 42);
-      drawstring(F("WANT TO DESTROY THEM ALL"), 0, 50);
+      drawstring(F("WANTS TO DESTROY THEM ALL"), 0, 50);
 
       if (arduboy.justPressed(A_BUTTON) || arduboy.justPressed(B_BUTTON))
         gamestate = MENU_SCREEN;

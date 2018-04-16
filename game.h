@@ -91,7 +91,11 @@ class Game
 
       if (arduboy.justPressed(LEFT_BUTTON))
       {
+         #ifdef ARDUBOY_TONES
         sound.tone(200, 20);
+        #else
+        beep2.tone(beep2.freq(200), 2);
+        #endif
         weapon.reset();
         switch (ship.getshiptype())
         {
@@ -109,7 +113,11 @@ class Game
 
       if (arduboy.justPressed(RIGHT_BUTTON))
       {
+        #ifdef ARDUBOY_TONES
         sound.tone(200, 20);
+        #else
+        beep2.tone(beep2.freq(200), 2);
+        #endif
         weapon.reset();
         switch (ship.getshiptype())
         {
@@ -127,7 +135,12 @@ class Game
 
       if (arduboy.justPressed(A_BUTTON) || arduboy.justPressed(B_BUTTON))
       {
+        #ifdef ARDUBOY_TONES
         sound.tone(1000, 20);
+        #else
+        beep2.tone(beep2.freq(1000), 2);
+        #endif
+        
         return ship.getshiptype();
       }
 
@@ -178,7 +191,11 @@ class Game
 
     void destroyboss()
     {
+      #ifdef ARDUBOY_TONES
       sound.tone(50, 20, 70 , 30);
+      #else
+      beep2.tone(beep2.freq(50), 2);
+      #endif
       for (byte i = 0; i < MAX_BOSS_PARTS; i++)
         if (enemymanager.boss.bossparts[i].visible())
         {
@@ -207,7 +224,11 @@ class Game
                 break;
             }
 
+            #ifdef ARDUBOY_TONES
             sound.tone(1000, 30);
+            #else
+            beep2.tone(beep2.freq(1000), 2);
+            #endif
             items.iteml[i].reset();
           }
 
@@ -230,7 +251,11 @@ class Game
                 explosions.addexplosion(enemymanager.boss.bossparts[i].x, enemymanager.boss.bossparts[i].y, EXPLOSION_MEDIUM);
               if (enemymanager.boss.bossparts[i].decreaselife(BOMB_DAMAGE))
               {
+                #ifdef ARDUBOY_TONES
                 sound.tone(100, 20, 80, 20, 60 , 20);
+                #else
+                beep2.tone(beep2.freq(100), 2);
+                #endif
                 score += bosspartscore;
                 if (mainpart || (!enemymanager.boss.partsvisible()))
                   destroyboss();
@@ -253,7 +278,11 @@ class Game
                     explosions.addexplosion(enemymanager.boss.bossparts[i].x, enemymanager.boss.bossparts[i].y, EXPLOSION_MEDIUM);
                   if (enemymanager.boss.bossparts[i].decreaselife(shootdamage))
                   {
+                    #ifdef ARDUBOY_TONES
                     sound.tone(100, 20, 80, 20, 60 , 20);
+                    #else
+                    beep2.tone(beep2.freq(100), 2);
+                    #endif
                     score += bosspartscore;
                     if (mainpart || (!enemymanager.boss.partsvisible()))
                       destroyboss();
@@ -269,12 +298,21 @@ class Game
             {
               if (ship.declives())
               {
+                #ifdef ARDUBOY_TONES
                 sound.tone(30, 30, 40, 40);
+                #else
+                beep2.tone(beep2.freq(30), 2);
+                #endif
+                
                 ship.setimmune(true, 120);
 
                 if (enemymanager.boss.bossparts[i].decreaselife(SHIP_DAMAGE))
                 {
+                  #ifdef ARDUBOY_TONES
                   sound.tone(100, 20, 80, 20, 60 , 20);
+                  #else
+                  beep2.tone(beep2.freq(100), 2);
+                  #endif
                   score += bosspartscore;;
                   if (mainpart || (!enemymanager.boss.partsvisible()))
                     destroyboss();
@@ -299,7 +337,11 @@ class Game
               explosions.addexplosion(enemymanager.enemyl[i].x, enemymanager.enemyl[i].y, enemymanager.enemyl[i].getexplosionstep());
               if (enemymanager.enemyl[i].decreaselife(enemymanager.enemyl[i].getlife()))
               {
+                #ifdef ARDUBOY_TONES
                 sound.tone(100, 20, 80, 20, 60 , 20);
+                #else
+                beep2.tone(beep2.freq(100), 2);
+                #endif
                 score += enemyscore;
               }
             }
@@ -331,7 +373,11 @@ class Game
 
                   if (enemymanager.enemyl[i].decreaselife(shootdamage))
                   {
+                    #ifdef ARDUBOY_TONES
                     sound.tone(100, 20, 80, 20, 60 , 20);
+                    #else
+                    beep2.tone(beep2.freq(100), 2);
+                    #endif
                     score += enemyscore;
                   }
 
@@ -345,11 +391,19 @@ class Game
             {
               if (ship.declives())
               {
+                #ifdef ARDUBOY_TONES
                 sound.tone(30, 30, 40, 40);
+                #else
+                beep2.tone(beep2.freq(30), 2);
+                #endif
                 ship.setimmune(true, 120);
                 if (enemymanager.enemyl[i].decreaselife(SHIP_DAMAGE))
                 {
+                  #ifdef ARDUBOY_TONES
                   sound.tone(100, 20, 80, 20, 60 , 20);
+                  #else
+                  beep2.tone(beep2.freq(100), 2);
+                  #endif
                   score += enemyscore;
                 }
                 else
@@ -375,7 +429,11 @@ class Game
 
             if (ship.declives())
             {
+              #ifdef ARDUBOY_TONES
               sound.tone(30, 30, 40, 40);
+              #else
+              beep2.tone(beep2.freq(30), 2);
+              #endif
               ship.setimmune(true, 120);
             }
             else
@@ -393,14 +451,22 @@ class Game
     {
       if (arduboy.pressed(A_BUTTON))
         if (weapon.shoot(ship.getdrawX(), ship.getdrawY()))
-          sound.tone(880, 20);
+            #ifdef ARDUBOY_TONES
+            sound.tone(880, 20);
+            #else
+            beep1.tone(beep1.freq(880), 2);
+            #endif
 
       if (arduboy.pressed(A_BUTTON) && arduboy.justPressed(B_BUTTON) && (changelevel == PLAYING_LEVEL || changelevel == FIGHT_BOSS))
       {
         if (ship.getbombs() > 0)
           if (bomb.shoot(ship.getdrawX(), ship.getdrawY()))
           {
+            #ifdef ARDUBOY_TONES
             sound.tone(20, 50, 30, 50);
+            #else
+            beep1.tone(beep1.freq(20), 3);
+            #endif
             ship.decbombs();
           }
       }
