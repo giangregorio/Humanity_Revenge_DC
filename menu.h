@@ -17,7 +17,7 @@ byte menuManagement()
   drawstring(F("sound"), 50, 49);
   drawstring(F("highscore"), 50, 57);
   
-  drawstring(F(VERSION), 2, 58);
+  drawstring(F(VERSION), 0, 59);
 
   if (arduboy.justPressed(DOWN_BUTTON))
   {

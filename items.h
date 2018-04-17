@@ -1,5 +1,4 @@
 class Item {
-    byte x = 0;
     byte y = 0;
 
     // 1 visible, 2 type, 5 duration
@@ -10,6 +9,8 @@ class Item {
       return (itemstatus & 0b00011111);
     }
   public:
+    byte x = 0;
+
     void init(byte _x, byte _y, byte _type, byte _duration)
     {
       if (_duration > 15)
@@ -109,10 +110,19 @@ class Items
     void update()
     {
       for (byte i = 0; i < MAX_ITEMS; i++)
+      {
+        if (iteml[i].visible())
+          if (arduboy.everyXFrames(3))
+            if (iteml[i].x > 0)
+              iteml[i].x--;
+            else
+              iteml[i].reset();
+
         if (iteml[i].visible())
           if (arduboy.everyXFrames(30))
             if (!iteml[i].decduration())
               iteml[i].reset();
+      }
     }
 
     void draw()

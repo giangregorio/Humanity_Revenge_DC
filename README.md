@@ -1,6 +1,6 @@
 # Humanity Revenge Director's Cut
 
-<b>version 1.0.0.0</b>
+<b>version 1.1</b>
 
 ## A Shoot 'Em Up for Arduboy
 
@@ -13,10 +13,7 @@ Being shot will decrease your lives (start with 3).
 
 You can progress through eight levels, encountering 5 different enemies and three big bosses. You will die often.
 
-Audio must be improved.
-
 ### what you need
 What you need to compile the game:
 - Arduino Ide 1.8.5
-- Arduboy2 4.1.0 (https://github.com/MLXXXp/Arduboy2)
-- ArduboyTones 1.0.3 (https://github.com/MLXXXp/ArduboyTones)
+- Arduboy2 5.1.0 (https://github.com/MLXXXp/Arduboy2)
