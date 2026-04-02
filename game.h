@@ -313,7 +313,7 @@ class Game
                   #else
                   beep2.tone(beep2.freq(100), 2);
                   #endif
-                  score += bosspartscore;;
+                  score += bosspartscore;
                   if (mainpart || (!enemymanager.boss.partsvisible()))
                     destroyboss();
                 }
