@@ -144,7 +144,7 @@ class Enemy
     bool decreaselife(byte damage)
     {
       if (getlife() > damage)
-        setlife(getlife() - 1 - damage);
+        setlife(getlife() - damage);
       else
       {
         reset();
