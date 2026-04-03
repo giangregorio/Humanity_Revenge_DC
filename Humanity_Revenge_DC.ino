@@ -15,7 +15,6 @@ BeepPin1 beep1;
 BeepPin2 beep2;
 #endif
 
-const float pi = 3.141593;
 Arduboy2Base arduboy;
 #ifdef ARDUBOY_TONES
 ArduboyTones sound(arduboy.audio.enabled);

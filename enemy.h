@@ -46,20 +46,20 @@ class EnemyShoot
     {
       if (visible())
       {
-        x -= 15 * cos(angle * pi / 180);
+        x -= 15 * cos(angle * M_PI / 180);
         if (getdrawX() <= 0)
           reset();
         else
         {
           if (positive())
           {
-            y -= 15 * sin(angle * pi / 180);
+            y -= 15 * sin(angle * M_PI / 180);
             if (getdrawY() <= 0)
               reset();
           }
           else
           {
-            y += 15 * sin(angle * pi / 180);
+            y += 15 * sin(angle * M_PI / 180);
             if (getdrawY() > 64)
               reset();
           }
@@ -208,7 +208,7 @@ class Enemy
               reset();
             else
             {
-              y = (6 * sin((arduboy.frameCount + randomseed) * 0.5 * pi / 33)) + firsty;
+              y = (6 * sin((arduboy.frameCount + randomseed) * 0.5 * M_PI / 33)) + firsty;
               if (y < MIN_SCREENHUD_Y / 10)
                 y = MIN_SCREENHUD_Y / 10;
               if (y > MAX_SCREEN_Y / 10 - 7)

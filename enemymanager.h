@@ -136,9 +136,9 @@ class EnemyManager
                     byte randomlaunch = enemyl[i].y + random(3, 5);
 
                     if (randomlaunch > randomy)
-                      enemyshootl[j].init(enemyl[i].x - 1, randomlaunch, (byte)(atan2(randomlaunch - randomy, enemyl[i].x - randomx) * 180 / pi), 1);
+                      enemyshootl[j].init(enemyl[i].x - 1, randomlaunch, (byte)(atan2(randomlaunch - randomy, enemyl[i].x - randomx) * 180 / M_PI), 1);
                     else
-                      enemyshootl[j].init(enemyl[i].x - 1, randomlaunch, (byte)abs(atan2(randomy - randomlaunch, enemyl[i].x - randomx) * 180 / pi), 0);
+                      enemyshootl[j].init(enemyl[i].x - 1, randomlaunch, (byte)abs(atan2(randomy - randomlaunch, enemyl[i].x - randomx) * 180 / M_PI), 0);
 
                     shootsonstage++;
                     shoot = true;
@@ -166,9 +166,9 @@ class EnemyManager
                   byte randomlaunch = boss.bossparts[i].y + random(0, 8);
 
                   if (randomlaunch > randomy)
-                    enemyshootl[j].init(boss.bossparts[i].x - 1, randomlaunch, (byte)(atan2(randomlaunch - randomy, boss.bossparts[i].x - randomx) * 180 / pi), 1);
+                    enemyshootl[j].init(boss.bossparts[i].x - 1, randomlaunch, (byte)(atan2(randomlaunch - randomy, boss.bossparts[i].x - randomx) * 180 / M_PI), 1);
                   else
-                    enemyshootl[j].init(boss.bossparts[i].x - 1, randomlaunch, (byte)abs(atan2(randomy - randomlaunch, boss.bossparts[i].x - randomx) * 180 / pi), 0);
+                    enemyshootl[j].init(boss.bossparts[i].x - 1, randomlaunch, (byte)abs(atan2(randomy - randomlaunch, boss.bossparts[i].x - randomx) * 180 / M_PI), 0);
 
                   shootsonstage++;
                   break;
